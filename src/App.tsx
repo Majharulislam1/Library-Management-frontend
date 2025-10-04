@@ -1,4 +1,5 @@
 import { Outlet } from "react-router"
+import { Navbar06 } from "./components/ui/shadcn-io/navbar-06"
  
 
 
@@ -9,9 +10,9 @@ function App() {
   return (
     <>
 
-      <div className="h-screen flex justify-center items-center">
+        <Navbar06></Navbar06>
         <Outlet />
-      </div>
+       
 
     </>
   )
