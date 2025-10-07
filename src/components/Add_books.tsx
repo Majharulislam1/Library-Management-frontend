@@ -11,17 +11,18 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 
- 
+import Swal from 'sweetalert2'
+
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { Select } from "@radix-ui/react-select"
- 
 
- 
- 
+
+
+
 // import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 // import { add_tasks } from "@/redux/features/task/task"
- 
- 
+
+
 import { useState } from "react"
 import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form"
 import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
@@ -41,22 +42,31 @@ export function Add_books() {
 
     // const User = useAppSelector(select_user);
 
-    const [createBooks , {data,isLoading}] = useCreateBookMutation();
+    const [createBooks, { data, isLoading }] = useCreateBookMutation();
 
-   
-    if(isLoading){
-         return <p>Loading</p>
+
+    if (isLoading) {
+        return <p>Loading</p>
     }
- 
+
     const onSubmit: SubmitHandler<Book_type> = async (data: Book_type) => {
         const newBooks: Book_type = {
             ...data,
         }
 
-        console.log(newBooks);
+
 
         const books = await createBooks(newBooks);
-        console.log(books);
+
+        if (books.data.success === true) {
+            Swal.fire({
+                title: "Drag me!",
+                icon: "success",
+                draggable: true
+            });
+        }
+
+
 
         // dispatch(add_tasks(newTask))
         setOpen(false);
@@ -87,7 +97,7 @@ export function Add_books() {
                                     <FormItem className="my-2">
                                         <FormLabel>Title</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Title" {...field} value={field.value || ""} required/>
+                                            <Input placeholder="Title" {...field} value={field.value || ""} required />
                                         </FormControl>
                                     </FormItem>
                                 )}
@@ -101,13 +111,13 @@ export function Add_books() {
                                     <FormItem className="my-2">
                                         <FormLabel>Author</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Author" {...field} value={field.value || ""} required/>
+                                            <Input placeholder="Author" {...field} value={field.value || ""} required />
                                         </FormControl>
                                     </FormItem>
                                 )}
                             />
 
-                             <FormField
+                            <FormField
 
                                 control={form.control}
                                 name="isbn"
@@ -115,7 +125,7 @@ export function Add_books() {
                                     <FormItem className="my-2">
                                         <FormLabel>ISBN</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="ISBN" {...field} value={field.value || ""} required/>
+                                            <Input placeholder="ISBN" {...field} value={field.value || ""} required />
                                         </FormControl>
                                     </FormItem>
                                 )}
@@ -129,7 +139,7 @@ export function Add_books() {
                                     <FormItem className="my-2">
                                         <FormLabel>Copies</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="copies" {...field} value={field.value || 0} required/>
+                                            <Input placeholder="copies" {...field} value={field.value || 0} required />
                                         </FormControl>
                                     </FormItem>
                                 )}
@@ -142,7 +152,7 @@ export function Add_books() {
                                     <FormItem className="my-2">
                                         <FormLabel>Description</FormLabel>
                                         <FormControl>
-                                           <Textarea placeholder="Type your message here." id="message" {...field} value={field.value || ""} required/>
+                                            <Textarea placeholder="Type your message here." id="message" {...field} value={field.value || ""} required />
                                         </FormControl>
                                     </FormItem>
                                 )}
@@ -192,10 +202,10 @@ export function Add_books() {
                                                     User.map(user => <SelectItem value={user.id} key={user.id}>{user.name}</SelectItem>)
                                                 } */}
 
-                                            {/* </SelectContent>
+                            {/* </SelectContent>
                                         </Select>
                             //         </FormItem> */}
-                            
+
 
                             <DialogFooter className="my-2">
                                 <DialogClose asChild>
