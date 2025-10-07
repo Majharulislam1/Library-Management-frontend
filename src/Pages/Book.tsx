@@ -1,3 +1,4 @@
+import { Add_books } from "@/components/Add_books";
 import Book_container from "@/components/Book_container";
 import { Button } from "@/components/ui/button";
  
@@ -15,9 +16,11 @@ const Book = () => {
                 <div>
                     <h1 className="font-bold text-4xl">All Books</h1>
                 </div>
-                <div className="gap-4">
-                    <Button className="mr-4">Add Book</Button>
+                <div className="gap-4 flex">
+                    
+                    <Add_books></Add_books>
                     <Button>Borrow Summary</Button>
+                    
                 </div>
             </div>
 
