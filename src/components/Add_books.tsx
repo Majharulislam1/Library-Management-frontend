@@ -60,10 +60,12 @@ export function Add_books() {
 
         if (books.data.success === true) {
             Swal.fire({
-                title: "Drag me!",
-                icon: "success",
-                draggable: true
-            });
+                    position: "center",
+                    icon: "success",
+                    title: "Successfully Book Added",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
         }
 
 
@@ -77,7 +79,7 @@ export function Add_books() {
         <Dialog open={isOpen} onOpenChange={setOpen}>
             <form>
                 <DialogTrigger asChild>
-                    <Button variant="outline">Add Task</Button>
+                    <Button variant="outline">Add Book</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>

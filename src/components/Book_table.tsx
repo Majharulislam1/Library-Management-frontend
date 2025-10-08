@@ -8,8 +8,10 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { useGetPokemonByNameQuery } from "@/Redux/BookApi/BookApi";
+import { useDelete_BooksMutation, useGetPokemonByNameQuery } from "@/Redux/BookApi/BookApi";
 import { Button } from "./ui/button";
+import type { Book_type } from "@/types/types";
+import Swal from "sweetalert2";
 
 
 
@@ -19,6 +21,10 @@ import { Button } from "./ui/button";
 export function Book_table() {
 
     const { data, error, isLoading } = useGetPokemonByNameQuery('bulbasaur');
+
+    
+    const [deleteBook,{ isLoading: isDeleting }] = useDelete_BooksMutation();
+
     
         if (isLoading) {
             return (
@@ -29,6 +35,33 @@ export function Book_table() {
                     </div>
                 </div>
             )
+        }
+
+
+
+
+        const handleDelete= (id:string)=>{
+
+
+              Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to delete this Book!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#171717',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Delete Book'
+            }).then(async(result) => {
+                if (result.isConfirmed) {
+    
+                  await deleteBook(id);
+                    
+                }
+            })
+
+
+
+
         }
     
      
@@ -68,7 +101,7 @@ export function Book_table() {
 
                    
                        {
-                         data.data.map((book) => <TableRow key={book._id}>
+                         data.data.map((book:Book_type) => <TableRow key={book._id}>
 
                             <TableCell  >
                                 <h1>{book.title}</h1>
@@ -90,7 +123,11 @@ export function Book_table() {
                             </TableCell>
                             <TableCell className="gap-4">
                                   <Button className="mr-4 cursor-pointer">Edit</Button>
-                                  <Button className="mr-4 cursor-pointer">Delete</Button>
+                                  <Button onClick={()=>handleDelete(book._id)} disabled={isDeleting}  className="mr-4 cursor-pointer">
+                                     {
+                                         isDeleting ? "Deleting..." : "Delete"
+                                     }
+                                    </Button>
                                   {
                                      book.available ? <Button className="mr-4 cursor-pointer">Borrow</Button> : <span className="bg-red-400 rounded-lg p-1 ">unavailable</span>
                                   }
