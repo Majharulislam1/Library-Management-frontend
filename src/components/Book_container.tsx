@@ -1,4 +1,4 @@
-import { useGetPokemonByNameQuery } from "@/Redux/BookApi/BookApi";
+import { useGetBooksQuery,   } from "@/Redux/BookApi/BookApi";
 import { Book_table } from "./Book_table";
 
  
@@ -6,7 +6,7 @@ import { Book_table } from "./Book_table";
 const Book_container = () => {
 
 
-  const { data, error, isLoading } = useGetPokemonByNameQuery('bulbasaur');
+  const { data, error, isLoading } = useGetBooksQuery('bulbasaur');
 
     if (isLoading) {
         return (
