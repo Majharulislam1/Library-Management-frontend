@@ -192,7 +192,7 @@ export function Update_book({ book, isOpen, onClose }: Props) {
                                     <FormItem className="my-2">
                                         <FormLabel>Description</FormLabel>
                                         <FormControl>
-                                            <Textarea placeholder="Type your message here." id="message" {...field}   required />
+                                            <Textarea placeholder="Type your message here." id="message" {...field}/>
                                         </FormControl>
                                     </FormItem>
                                 )}

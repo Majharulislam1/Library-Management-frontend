@@ -33,14 +33,13 @@ export const BookApi = createApi({
     }),
 
     updateBook: builder.mutation({
-      query: ({ id, data }) => ({
+      query: ({ id, data }) => ({ // patch and put all time pass data don't use book or user or other
         url: `/books/${id}`,
         method: 'PATCH',
         body: data,
       }),
       invalidatesTags: ['books']
     }),
-
 
   }),
 })
