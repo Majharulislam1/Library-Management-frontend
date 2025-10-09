@@ -89,11 +89,14 @@ export function Update_book({ book, isOpen, onClose }: Props) {
             ...data,
              
         }
+     
+   
+        console.log()
 
-         
-
-        const up_book =await update_book({id:book._id,data:newBooks});
+        const up_book =await update_book({id:book._id,data:newBooks}).unwrap();
         console.log(up_book);
+
+
 
         // if (books.data.success === true) {
         //     Swal.fire({
@@ -104,10 +107,8 @@ export function Update_book({ book, isOpen, onClose }: Props) {
         //         timer: 2000
         //     });
         // }
-
-
-
         // dispatch(add_tasks(newTask))
+        
         onClose();
         form.reset();
     }
