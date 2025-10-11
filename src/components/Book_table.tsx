@@ -160,7 +160,7 @@ export function Book_table() {
                                         }
                                     </Button>
                                     {
-                                        book.available ? <Button className="mr-4 cursor-pointer">Borrow</Button> : <span className="bg-red-400 rounded-lg p-1 ">unavailable</span>
+                                        book.available && book.copies >0  ? <Button className="mr-4 cursor-pointer">Borrow</Button> : <span className="bg-red-400 rounded-lg p-1 ">unavailable</span>
                                     }
 
                                 </TableCell>
