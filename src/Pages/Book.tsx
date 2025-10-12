@@ -11,7 +11,7 @@ const Book = () => {
    const navigate = useNavigate();
 
     return (
-        <div className="  mx-auto container py-10    px-4 sm:px-6 md:px-8 lg:px-0">
+        <div className="  mx-auto container py-10 h-screen   px-4 sm:px-6 md:px-8 lg:px-0">
 
             <div className="flex justify-between items-center">
                 <div>
