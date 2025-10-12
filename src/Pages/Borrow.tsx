@@ -1,4 +1,5 @@
-import { Add_books } from "@/components/Add_books";
+ 
+import Borrow_table from "@/components/Borrow_table";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
 
@@ -23,8 +24,8 @@ const Borrow = () => {
                     
                 </div>
             </div>
-
-              <h1>borrow summary</h1>
+               
+               <Borrow_table></Borrow_table>
              
 
         </div>
