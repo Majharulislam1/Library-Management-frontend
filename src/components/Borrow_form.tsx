@@ -27,22 +27,42 @@ const Borrow_form = ({ book, isOpen, onClose }: Props) => {
     const form = useForm<BorrowInterface>();
     const navigate = useNavigate();
 
-const [createBorrow, { data, isLoading }] = useCreateBorrowMutation();
+    const [createBorrow, { data, isLoading }] = useCreateBorrowMutation();
 
 
     const onSubmit: SubmitHandler<BorrowInterface> = async (data: BorrowInterface) => {
         const newBooks: BorrowInterface = {
-             ...data,
-            book:book._id,
+            ...data,
+            book: book._id,
         }
 
 
- 
+        if (isNaN(parseInt(data.quantity))) {
+            return Swal.fire({
+                position: "center",
+                icon: "warning",
+                title: "Please enter a valid quantity.",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
+
+        if (book.copies < parseInt(data.quantity)) {
+            return Swal.fire({
+                position: "center",
+                icon: "warning",
+                title: `We only have ${book.copies} items in stock. Please adjust your order.`,
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
+
+
 
         const borrow = await createBorrow(newBooks);
- 
 
-         
+
+
 
 
         if (borrow.data.success === true) {
@@ -54,7 +74,7 @@ const [createBorrow, { data, isLoading }] = useCreateBorrowMutation();
                 timer: 2000
             });
         }
-        
+
         navigate('/borrow-summary');
 
         onClose();
