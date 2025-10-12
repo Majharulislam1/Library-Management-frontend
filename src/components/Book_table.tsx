@@ -14,6 +14,7 @@ import type { Book_type } from "@/types/types";
 import Swal from "sweetalert2";
 import { Update_book } from "./Update_book";
 import { useState } from "react";
+import Borrow_form from "./Borrow_form";
 
 
 
@@ -35,6 +36,25 @@ export function Book_table() {
         setIsOpen(false);
         setSelectedBook(null);
     };
+
+
+
+    const [isOpen2, setIsOpen2] = useState(false);
+
+    const [selectedBook2, setSelectedBook2] = useState<Book_type | null>(null);
+
+    const openModal2 = (book: Book_type) => {
+        setSelectedBook2(book);
+        setIsOpen2(true);
+    };
+
+    const closeModal2 = () => {
+        setIsOpen2(false);
+        setSelectedBook2(null);
+    };
+
+
+
 
     const { data, error, isLoading } = useGetBooksQuery('bulbasaur');
 
@@ -104,7 +124,7 @@ export function Book_table() {
                                 <h4>Genre</h4>
                             </TableHead>
                             <TableHead  >
-                                <h4>ISBN</h4>
+                                <h4>ISBN</h4> 
                             </TableHead>
                             <TableHead  >
                                 <h4>Copies</h4>
@@ -160,7 +180,11 @@ export function Book_table() {
                                         }
                                     </Button>
                                     {
-                                        book.available && book.copies >0  ? <Button className="mr-4 cursor-pointer">Borrow</Button> : <span className="bg-red-400 rounded-lg p-1 ">unavailable</span>
+                                        book.available && book.copies >0  ? 
+
+                                        <Button onClick={() => openModal2(book)}  className="mr-4 cursor-pointer">Borrow</Button>
+                                        
+                                         : <span className="bg-red-400 rounded-lg p-1 ">unavailable</span>
                                     }
 
                                 </TableCell>
@@ -188,6 +212,19 @@ export function Book_table() {
                         onClose={closeModal}
                     />
                 )}
+                
+                {
+                    isOpen2 && selectedBook2 && (
+                    <Borrow_form 
+                    book={selectedBook2}
+                        isOpen={isOpen2}
+                        onClose={closeModal2}
+                        >
+                            
+                        </Borrow_form>
+                    )
+                }
+
             </div>
         </div>
     )

@@ -1,13 +1,14 @@
 import { Add_books } from "@/components/Add_books";
 import Book_container from "@/components/Book_container";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router";
  
 
 
 
 const Book = () => {
 
-  
+   const navigate = useNavigate();
 
     return (
         <div className="mx-auto container py-10">
@@ -19,12 +20,13 @@ const Book = () => {
                 <div className="gap-4 flex">
                     
                     <Add_books></Add_books>
-                    <Button>Borrow Summary</Button>
+                    <Button onClick={()=>navigate('/borrow-summary')}>Borrow Summary</Button>
                     
                 </div>
             </div>
 
              <Book_container></Book_container>
+             
 
         </div>
     );

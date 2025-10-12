@@ -11,3 +11,9 @@ export type Book_type = {
     available:boolean
 }
 
+export interface BorrowInterface { 
+    book:string  
+    quantity: number;
+    dueDate: Date;
+}
+
