@@ -10,11 +10,11 @@ const Borrow = () => {
     const navigate = useNavigate();
 
     return (
-         <div className="mx-auto container py-10">
+         <div className="mx-auto container py-10    px-4 sm:px-6 md:px-8 lg:px-0">
 
             <div className="flex justify-between items-center">
                 <div>
-                    <h1 className="font-bold text-4xl">Borrow summary</h1>
+                  <h1 className="font-bold text-2xl sm:text-2xl md:text-3xl lg:text-4xl">Borrow summary</h1>
                 </div>
                 <div className="gap-4 flex">
                     

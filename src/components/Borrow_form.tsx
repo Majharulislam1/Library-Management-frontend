@@ -60,11 +60,6 @@ const Borrow_form = ({ book, isOpen, onClose }: Props) => {
 
 
         const borrow = await createBorrow(newBooks);
-
-
-
-
-
         if (borrow.data.success === true) {
             Swal.fire({
                 position: "center",
