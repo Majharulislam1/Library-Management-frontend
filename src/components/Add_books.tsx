@@ -141,7 +141,7 @@ export function Add_books() {
                                     <FormItem className="my-2">
                                         <FormLabel>Copies</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="copies" {...field} value={field.value || 0} required />
+                                            <Input placeholder="copies" {...field} value={field.value || ''} required />
                                         </FormControl>
                                     </FormItem>
                                 )}
