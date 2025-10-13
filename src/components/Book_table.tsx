@@ -1,5 +1,3 @@
-
-
 import {
     Table,
     TableBody,
@@ -91,7 +89,16 @@ export function Book_table() {
         }).then(async (result) => {
             if (result.isConfirmed) {
 
-                await deleteBook(id);
+              const data=  await deleteBook(id);
+                if (data.data.success === true) {
+                           Swal.fire({
+                               position: "center",
+                               icon: "success",
+                               title: "Successfully Deleted",
+                               showConfirmButton: false,
+                               timer: 2000
+                           });
+                       }
 
             }
         })

@@ -29,7 +29,7 @@ import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/sele
 import type { Book_type } from "@/types/types"
 import { Textarea } from "./ui/textarea"
 import { useUpdateBookMutation } from "@/Redux/BookApi/BookApi"
- 
+
 
 
 type Props = {
@@ -44,7 +44,7 @@ export function Update_book({ book, isOpen, onClose }: Props) {
 
 
 
-     
+
     // const dispatch = useAppDispatch();
 
     // const User = useAppSelector(select_user);
@@ -52,15 +52,15 @@ export function Update_book({ book, isOpen, onClose }: Props) {
     const form = useForm<Book_type>({
         defaultValues: {
             title: book.title || '',
-            author: book.author ||'',
-            genre:book.genre || 'FICTION',
-            isbn:book.isbn || '',
-            description:book.description || '',
+            author: book.author || '',
+            genre: book.genre || 'FICTION',
+            isbn: book.isbn || '',
+            description: book.description || '',
             copies: book.copies || 0,
         }
     });
 
-    
+
 
 
 
@@ -84,30 +84,38 @@ export function Update_book({ book, isOpen, onClose }: Props) {
 
     const onSubmit: SubmitHandler<Book_type> = async (data: Book_type) => {
         const newBooks: Book_type = {
-            
+
             ...data,
-             
+
         }
-     
-   
-        console.log()
-
-        const up_book =await update_book({id:book._id,data:newBooks}).unwrap();
-        console.log(up_book);
 
 
+        if (isNaN(parseInt(newBooks.copies))) {
+            return Swal.fire({
+                position: "center",
+                icon: "warning",
+                title: "Please enter a valid Copies.",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
 
-        // if (books.data.success === true) {
-        //     Swal.fire({
-        //         position: "center",
-        //         icon: "success",
-        //         title: "Successfully Book Added",
-        //         showConfirmButton: false,
-        //         timer: 2000
-        //     });
-        // }
+        const up_book = await update_book({ id: book._id, data: newBooks }).unwrap();
+
+
+
+
+        if (up_book.success === true) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Successfully Book Updated",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
         // dispatch(add_tasks(newTask))
-        
+
         onClose();
         form.reset();
     }
@@ -136,7 +144,7 @@ export function Update_book({ book, isOpen, onClose }: Props) {
                                     <FormItem className="my-2">
                                         <FormLabel>Title</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Title" {...field}  required />
+                                            <Input placeholder="Title" {...field} required />
                                         </FormControl>
                                     </FormItem>
                                 )}
@@ -150,7 +158,7 @@ export function Update_book({ book, isOpen, onClose }: Props) {
                                     <FormItem className="my-2">
                                         <FormLabel>Author</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Author" {...field}  required />
+                                            <Input placeholder="Author" {...field} required />
                                         </FormControl>
                                     </FormItem>
                                 )}
@@ -164,7 +172,7 @@ export function Update_book({ book, isOpen, onClose }: Props) {
                                     <FormItem className="my-2">
                                         <FormLabel>ISBN</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="ISBN" {...field}  required />
+                                            <Input placeholder="ISBN" {...field} required />
                                         </FormControl>
                                     </FormItem>
                                 )}
@@ -178,7 +186,7 @@ export function Update_book({ book, isOpen, onClose }: Props) {
                                     <FormItem className="my-2">
                                         <FormLabel>Copies</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="copies" {...field}   required />
+                                            <Input placeholder="copies" {...field} required />
                                         </FormControl>
                                     </FormItem>
                                 )}
@@ -191,7 +199,7 @@ export function Update_book({ book, isOpen, onClose }: Props) {
                                     <FormItem className="my-2">
                                         <FormLabel>Description</FormLabel>
                                         <FormControl>
-                                            <Textarea placeholder="Type your message here." id="message" {...field}/>
+                                            <Textarea placeholder="Type your message here." id="message" {...field} />
                                         </FormControl>
                                     </FormItem>
                                 )}
