@@ -54,7 +54,7 @@ export function Book_table() {
 
 
 
-    const { data, error, isLoading } = useGetBooksQuery('bulbasaur');
+    const { data,   isLoading } = useGetBooksQuery('bulbasaur');
 
 
     const [deleteBook, { isLoading: isDeleting }] = useDelete_BooksMutation();

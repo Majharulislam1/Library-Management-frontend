@@ -65,7 +65,7 @@ export function Update_book({ book, isOpen, onClose }: Props) {
 
 
 
-    const [update_book, { isLoading, error }] = useUpdateBookMutation();
+    const [update_book, { isLoading,   }] = useUpdateBookMutation();
 
 
 
@@ -90,7 +90,7 @@ export function Update_book({ book, isOpen, onClose }: Props) {
         }
 
 
-        if (isNaN(parseInt(newBooks.copies))) {
+        if (isNaN(parseInt(newBooks.copies as unknown as string))) {
             return Swal.fire({
                 position: "center",
                 icon: "warning",

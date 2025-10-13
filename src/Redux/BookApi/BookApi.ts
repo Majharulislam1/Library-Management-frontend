@@ -1,6 +1,5 @@
 
-
-import type { Book_type } from '@/types/types';
+ 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const BookApi = createApi({
   reducerPath: 'BookApi',
@@ -27,10 +26,10 @@ export const BookApi = createApi({
       invalidatesTags: ['books']
     }),
 
-    getBookById: builder.query<Book_type, string>({
-      query: (id) => `/books/${id}`,
-      providesTags: (result, error, id) => [{ type: 'books', id }],
-    }),
+    // getBookById: builder.query<Book_type, string>({
+    //   query: (id) => `/books/${id}`,
+    //   providesTags: (result, error, id) => [{ type: 'books', id }],
+    // }),
 
     updateBook: builder.mutation({
       query: ({ id, data }) => ({ // patch and put all time pass data don't use book or user or other
@@ -67,7 +66,7 @@ export const {
   useGetBooksQuery, 
   useCreateBookMutation, 
   useDelete_BooksMutation, 
-  useGetBookByIdQuery, 
+ 
   useUpdateBookMutation,
   useCreateBorrowMutation,
   useGetBorrow_summaryQuery 

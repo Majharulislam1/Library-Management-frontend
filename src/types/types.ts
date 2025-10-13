@@ -17,3 +17,11 @@ export interface BorrowInterface {
     dueDate: Date;
 }
 
+
+export interface BookItem {
+    book: {
+        title: string;
+        isbn: string;
+    };
+    totalQuantity: number;
+}

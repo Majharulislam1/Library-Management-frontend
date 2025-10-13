@@ -6,7 +6,7 @@ import { Book_table } from "./Book_table";
 const Book_container = () => {
 
 
-  const { data, error, isLoading } = useGetBooksQuery('bulbasaur');
+  const {   isLoading } = useGetBooksQuery('bulbasaur');
 
     if (isLoading) {
         return (

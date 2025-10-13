@@ -42,7 +42,7 @@ export function Add_books() {
 
     // const User = useAppSelector(select_user);
 
-    const [createBooks, { data, isLoading }] = useCreateBookMutation();
+    const [createBooks, {   isLoading }] = useCreateBookMutation();
 
 
     if (isLoading) {

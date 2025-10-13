@@ -1,3 +1,4 @@
+import type { BookItem } from "@/types/types";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 import { useGetBorrow_summaryQuery } from "@/Redux/BookApi/BookApi";
 
@@ -47,7 +48,7 @@ const Borrow_table = () => {
                     </TableHeader>
 
                     <TableBody>
-                        {data.data.map((book, index) => (
+                        {data.data.map((book:BookItem, index:number) => (
                             <TableRow key={`${book.book.isbn}-${index}`}>
                                 <TableCell>
                                     <h1>{book.book.title}</h1>
